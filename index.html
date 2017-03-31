@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500,300,700,400' rel='stylesheet' type='text/css'>
+    <link href="css/main.css" rel="stylesheet" />
+
+    <script src="js/shared/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp">
+    <div class="header">
+    </div>
+
+    <div class="main" ng-controller="MainController">
+      <div class="container">
+
+        <h1>{{ title }}</h1>
+        <h2>{{ promo }}</h2>
+
+        <div ng-repeat="product in products" class="col-md-6"> 
+          <div class="thumbnail"> 
+            <img ng-src="{{ product.cover }}"> 
+            <p class="title">{{ product.name }}</p> 
+            <p class="price">{{ product.price | currency }}</p> 
+            <p class="date">{{ product.pubdate | date }}</p> 
+            <div class="rating">
+              <p class="likes" ng-click="plusOne($index)">+ {{ product.likes }} </p>
+              <p class="dislikes" ng-click="minusOne($index)">- {{ product.dislikes }} </p>
+            </div>
+            <!-- comments -->
+            <div ng-controller="personCtrl">
+              Write your review: <textarea ng-model="comment"></textarea> <br>
+              <br>
+               {{comments()}}
+
+              </div>
+          </div>
+
+          <!--div ng-controller="ExampleController">
+              <form novalidate class="simple-form">
+                Add Comment: <textarea ng-model="user.comment"></textarea>  <br />
+                By: <input type="text" ng-model="user.name" />
+                
+                <input type="submit" ng-click="update(user)" value="Save" />
+              </form>
+              <pre>{{user | json}}</pre>
+          </div>
+        </div--> 
+      </div>
+    </div>
+
+
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+  </body>
+</html>
